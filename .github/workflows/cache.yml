@@ -1,0 +1,23 @@
+name: cache-workflow
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache
+          key: cache-233699b
+
+      - name: prime-cache-233699b
+        run: |
+          echo "Cache hit: ${{ steps.cache.outputs.cache-hit }}"
